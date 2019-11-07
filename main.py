@@ -9,14 +9,7 @@ class BTInterface(btle.DefaultDelegate):
             self.peripheral = btle.Peripheral(deviceAddress, btle.ADDR_TYPE_RANDOM)
             self.peripheral.setDelegate(self)
 
-            self.seq = 0
-            self.roll = self.getSpheroCharacteristic('2ba1')
-
-    def getSpheroCharacteristic(self, fragment):
-        return self.peripheral.getCharacteristics(uuid='22bb746f' + fragment + '75542d6f726568705327')[0]
-
-    def send(self, data):
-        self.roll.write(data, withResponse=True)
+            self.peripheral.writeCharacteristic(1, "test", withResponse=False)
 
 
 
