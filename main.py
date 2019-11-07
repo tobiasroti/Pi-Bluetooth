@@ -1,7 +1,6 @@
 from bluepy import btle
 
-class Bluetooth:
-
+class BTInterface(btle.DefaultDelegate):
     def __init__(self, deviceAddress):
             self.deviceAddress = deviceAddress
             btle.DefaultDelegate.__init__(self)
@@ -28,4 +27,4 @@ class Bluetooth:
             print 'Sending wakecpu'
             self.wakecpu.write('\x01', withResponse=True)
 
-test = Bluetooth("DD:DB:26:00:0C:86")
+test = BTInterface("DD:DB:26:00:0C:86")
