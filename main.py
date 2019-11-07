@@ -10,6 +10,7 @@ class BTInterface(btle.DefaultDelegate):
             self.peripheral.setDelegate(self)
 
             self.seq = 0
+            self.roll = self.getSpheroCharacteristic('2ba1')
 
     def send(self, data):
         self.roll.write(data, withResponse=True)
