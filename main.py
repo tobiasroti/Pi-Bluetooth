@@ -22,5 +22,3 @@ for dev in devices:
         print("FUCK")
     for (adtype, desc, value) in dev.getScanData():
         print "  %s = %s" % (desc, value)
-
-while True:
