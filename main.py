@@ -145,6 +145,8 @@ class BTInterface(btle.DefaultDelegate):
         # Attribute UUIDs are identical to Ollie.
         self.antidos = self.getSpheroCharacteristic()
 
+        self.characteristic = Characteristic(self.antidos)
+
         for item in self.antidos:
             print(item)
 
