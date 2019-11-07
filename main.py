@@ -142,7 +142,7 @@ class BTInterface(btle.DefaultDelegate):
         self.seq = 0
 
         # Attribute UUIDs are identical to Ollie.
-        self.antidos = self.getSpheroCharacteristic('2bbd')
+        self.antidos = self.getSpheroCharacteristic()
         self.wakecpu = self.getSpheroCharacteristic('2bbf')
         self.txpower = self.getSpheroCharacteristic('2bb2')
         self.roll = self.getSpheroCharacteristic('2ba1')
@@ -157,8 +157,8 @@ class BTInterface(btle.DefaultDelegate):
         print 'Sending wakecpu'
         self.wakecpu.write('\x01', withResponse=True)
 
-    def getSpheroCharacteristic(self, fragment):
-        return self.peripheral.getCharacteristics(uuid='6E400001-B5A3-F393-E0A9-E50E24DCCA9E' + fragment + '75542d6f726568705327')[0]
+    def getSpheroCharacteristic(self):
+        return self.peripheral.getCharacteristics(uuid='6E400001-B5A3-F393-E0A9-E50E24DCCA9E')[0]
 
     def dumpCharacteristics(self):
         for s in self.peripheral.getServices():
