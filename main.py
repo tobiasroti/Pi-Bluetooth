@@ -8,6 +8,7 @@ import struct
 import time
 import operator
 import threading
+import uuid
 
 # These are the message response code that can be return by Sphero.
 MRSP = dict(
@@ -158,7 +159,13 @@ class BTInterface(btle.DefaultDelegate):
         self.wakecpu.write('\x01', withResponse=True)
 
     def getSpheroCharacteristic(self):
-        print(self.peripheral.getCharacteristics(startHnd=1, endHnd=0xFFFF, uuid=None))
+        #print(self.peripheral.getCharacteristics(startHnd=1, endHnd=0xFFFF, uuid=None))
+        o = {
+            "name": "Unknown",
+            "parent": "Uncategorized",
+            "uuid": "6E400001-B5A3-F393-E0A9-E50E24DCCA9E"
+            }
+        print uuid.UUID(o['uuid']).hex
         print('FUCK')
         return self.peripheral.getCharacteristics(uuid='6E400001-B5A3-F393-E0A9-E50E24DCCA9E')
 
