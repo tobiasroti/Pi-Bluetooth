@@ -158,6 +158,8 @@ class BTInterface(btle.DefaultDelegate):
         self.wakecpu.write('\x01', withResponse=True)
 
     def getSpheroCharacteristic(self):
+        print(self.peripheral.getCharacteristics(uuid='6E400001-B5A3-F393-E0A9-E50E24DCCA9E'))
+        print('FUCK')
         return self.peripheral.getCharacteristics(uuid='6E400001-B5A3-F393-E0A9-E50E24DCCA9E')
 
     def dumpCharacteristics(self):
