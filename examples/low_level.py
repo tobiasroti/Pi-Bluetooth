@@ -68,6 +68,9 @@ def main():
         # (specify timeout_sec parameter to override).
         print('Discovering services...')
         device.discover([UART_SERVICE_UUID], [TX_CHAR_UUID, RX_CHAR_UUID])
+        print('UART_SERVICE_UUID: ', UART_SERVICE_UUID)
+        print('TX_CHAR_UUID: ', TX_CHAR_UUID)
+        print('RX_CHAR_UUID: ', RX_CHAR_UUID)
 
         # Find the UART service and its characteristics.
         uart = device.find_service(UART_SERVICE_UUID)
