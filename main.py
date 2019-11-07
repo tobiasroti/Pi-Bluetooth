@@ -9,8 +9,8 @@ class BTInterface(btle.DefaultDelegate):
             self.peripheral = btle.Peripheral(deviceAddress, btle.ADDR_TYPE_RANDOM)
             self.peripheral.setDelegate(self)
 
-            self.peripheral.writeCharacteristic(1, "test", withResponse=False)
-
+            #self.peripheral.writeCharacteristic(1, "test", withResponse=False)
+            self.peripheral.getDescriptors()
 
 
 test = BTInterface("DD:DB:26:00:0C:86")
