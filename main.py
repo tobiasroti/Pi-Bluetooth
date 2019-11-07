@@ -1,5 +1,5 @@
 from bluepy.btle import Scanner, DefaultDelegate
-from time
+import time
 
 class ScanDelegate(DefaultDelegate):
     def __init__(self):
