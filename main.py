@@ -14,4 +14,3 @@ class BTInterface(btle.DefaultDelegate):
 
 
 test = BTInterface("DD:DB:26:00:0C:86")
-test.send("Tobias er best")
