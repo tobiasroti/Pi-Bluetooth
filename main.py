@@ -20,11 +20,11 @@ class BTInterface(btle.DefaultDelegate):
 '''
             # This startup sequence is also identical to the one for Ollie.
             # It even uses the same unlock code.
-            print('Sending antidos')
+            #print('Sending antidos')
             self.antidos.write('011i3', withResponse=True)
-            print('Sending txpower')
+            #print('Sending txpower')
             self.txpower.write('\x0007', withResponse=True)
-            print('Sending wakecpu')
+            #print('Sending wakecpu')
             self.wakecpu.write('\x01', withResponse=True)
 
 test = BTInterface("DD:DB:26:00:0C:86")
