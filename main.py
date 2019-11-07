@@ -144,10 +144,10 @@ class BTInterface(btle.DefaultDelegate):
 
         # Attribute UUIDs are identical to Ollie.
         self.antidos = self.getSpheroCharacteristic()
-        self.wakecpu = self.getSpheroCharacteristic('2bbf')
-        self.txpower = self.getSpheroCharacteristic('2bb2')
-        self.roll = self.getSpheroCharacteristic('2ba1')
-        self.notify = self.getSpheroCharacteristic('2ba6')
+        self.wakecpu = self.getSpheroCharacteristic()
+        self.txpower = self.getSpheroCharacteristic()
+        self.roll = self.getSpheroCharacteristic()
+        self.notify = self.getSpheroCharacteristic()
 
         # This startup sequence is also identical to the one for Ollie.
         # It even uses the same unlock code.
@@ -159,16 +159,7 @@ class BTInterface(btle.DefaultDelegate):
         self.wakecpu.write('\x01', withResponse=True)
 
     def getSpheroCharacteristic(self):
-        #print(self.peripheral.getCharacteristics(startHnd=1, endHnd=0xFFFF, uuid=None))
-        o = {
-            "name": "Unknown",
-            "parent": "Uncategorized",
-            "uuid": "6E400001-B5A3-F393-E0A9-E50E24DCCA9E"
-            }
-        test = uuid.UUID(o['uuid']).hex
-        print(test)
-        print('FUCK')
-        print('FUCK')
+        print(self.peripheral.getCharacteristics(startHnd=1, endHnd=0xFFFF, uuid=None))
         return self.peripheral.getCharacteristics(startHnd=1, endHnd=0xFFFF, uuid=None)
 
     def dumpCharacteristics(self):
