@@ -1,8 +1,19 @@
-from bluepy import btle
+from bluepy.btle import Scanner, DefaultDelegate
 
-print ("Connecting...")
-dev = btle.Peripheral("DD:DB:26:00:0C:86")
+class ScanDelegate(DefaultDelegate):
+    def __init__(self):
+        DefaultDelegate.__init__(self)
 
-print ("Services...")
-for svc in dev.services:
-    print (str(svc))
+    def handleDiscovery(self, dev, isNewDev, isNewData):
+        if isNewDev:
+            print "Discovered device", dev.addr
+        elif isNewData:
+            print "Received new data from", dev.addr
+
+scanner = Scanner().withDelegate(ScanDelegate())
+devices = scanner.scan(10.0)
+
+for dev in devices:
+    print "Device %s (%s), RSSI=%d dB" % (dev.addr, dev.addrType, dev.rssi)
+    for (adtype, desc, value) in dev.getScanData():
+        print "  %s = %s" % (desc, value)
