@@ -148,16 +148,7 @@ class BTInterface(btle.DefaultDelegate):
         self.txpower = self.getSpheroCharacteristic()
         self.roll = self.getSpheroCharacteristic()
         self.notify = self.getSpheroCharacteristic()
-'''
-        # This startup sequence is also identical to the one for Ollie.
-        # It even uses the same unlock code.
-        print 'Sending antidos'
-        self.antidos.write('011i3', withResponse=True)
-        print 'Sending txpower'
-        self.txpower.write('\x0007', withResponse=True)
-        print 'Sending wakecpu'
-        self.wakecpu.write('\x01', withResponse=True)
-        '''
+
 
     def getSpheroCharacteristic(self):
         print(self.peripheral.getCharacteristics(startHnd=1, endHnd=0xFFFF, uuid=None))
