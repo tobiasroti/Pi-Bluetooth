@@ -10,14 +10,14 @@ class BTInterface(btle.DefaultDelegate):
             self.peripheral.setDelegate(self)
 
             self.seq = 0
-'''
+
             # Attribute UUIDs are identical to Ollie.
             self.antidos = self.getSpheroCharacteristic('2bbd')
             self.wakecpu = self.getSpheroCharacteristic('2bbf')
             self.txpower = self.getSpheroCharacteristic('2bb2')
             self.roll = self.getSpheroCharacteristic('2ba1')
             self.notify = self.getSpheroCharacteristic('2ba6')
-'''
+
             # This startup sequence is also identical to the one for Ollie.
             # It even uses the same unlock code.
             print 'Sending antidos'
