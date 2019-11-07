@@ -1,4 +1,5 @@
 from bluepy.btle import Scanner, DefaultDelegate
+from time
 
 class ScanDelegate(DefaultDelegate):
     def __init__(self):
@@ -20,5 +21,10 @@ for dev in devices:
     print "Device %s (%s), RSSI=%d dB" % (dev.addr, dev.addrType, dev.rssi)
     if dev.addr == 'dd:db:26:00:0c:86':
         print("FUCK")
+        arudino = dev
     for (adtype, desc, value) in dev.getScanData():
         print "  %s = %s" % (desc, value)
+while True:
+    print("call")
+    scanner.handleDiscovery(arudino, False, True)
+    time.sleep(1)
