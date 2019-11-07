@@ -168,6 +168,8 @@ class BTInterface(btle.DefaultDelegate):
         test = uuid.UUID(o['uuid']).hex
         print(test)
         print('FUCK')
+        print(self.peripheral.getCharacteristics(uuid=test))
+        print('FUCK')
         return self.peripheral.getCharacteristics(uuid=test)
 
     def dumpCharacteristics(self):
