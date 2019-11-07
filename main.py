@@ -142,7 +142,7 @@ class BTInterface(btle.DefaultDelegate):
         self.seq = 0
 
         # Attribute UUIDs are identical to Ollie.
-        self.antidos = self.getSpheroCharacteristic('2bbd')
+        self.antidos = self.getSpheroCharacteristic('6E400001-B5A3-F393-E0A9-E50E24DCCA9E')
         self.wakecpu = self.getSpheroCharacteristic('2bbf')
         self.txpower = self.getSpheroCharacteristic('2bb2')
         self.roll = self.getSpheroCharacteristic('2ba1')
