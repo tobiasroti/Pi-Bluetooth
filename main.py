@@ -11,5 +11,10 @@ class BTInterface(btle.DefaultDelegate):
 
             self.seq = 0
 
+    def send(self, data):
+        self.roll.write(data, withResponse=True)
+
+
 
 test = BTInterface("DD:DB:26:00:0C:86")
+test.send("Tobias er best")
