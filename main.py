@@ -888,4 +888,4 @@ class Sphero(threading.Thread):
         return self.is_connected
 
 test = BTInterface("DD:DB:26:00:0C:86")
-test.handleNotification()
+test.waitForNotifications(10)
