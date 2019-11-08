@@ -37,9 +37,9 @@ class UART(ServiceBase):
     """Bluetooth LE UART service object."""
 
     # Configure expected services and characteristics for the UART service.
-    ADVERTISED = [UART_SERVICE_UUID]
-    SERVICES = [UART_SERVICE_UUID]
-    CHARACTERISTICS = [TX_CHAR_UUID, RX_CHAR_UUID]
+    #ADVERTISED = [UART_SERVICE_UUID]
+    #SERVICES = [UART_SERVICE_UUID]
+    #CHARACTERISTICS = [TX_CHAR_UUID, RX_CHAR_UUID]
     print('FUCK')
 
     def __init__(self, device):
