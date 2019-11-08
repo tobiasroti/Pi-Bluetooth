@@ -6,16 +6,16 @@ import constants
 
 self.sock.send(message)
 self.host = constants.HOST_BTLE
-self.port = constants.PORT_BTLE 
+self.port = constants.PORT_BTLE
 self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-self.NUM_ROBOTS = constants.NUM_ROBOTS 
-COLOR_TYPE = 20 
+self.NUM_ROBOTS = constants.NUM_ROBOTS
+COLOR_TYPE = 20
 
 sock = socket.socket()
 sock.connect((self.host,self.port))
 
 def step():
-message = ""
+    message = ""
     for i in range(0, self.NUM_ROBOTS):
         message = "0,20,90,90"
         self.sock.send(message)
