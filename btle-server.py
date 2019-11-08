@@ -194,16 +194,50 @@ def main():
     print 'Server running, ready to scan for BTLE peripherals.'
 
     connections = []
-    address = "DD:DB:26:00:0C:86"
-    b = bleBot(address)
+
+    addresses = blescan.blescan()
+    while len(addresses) < constants.NUM_ROBOTS:
+        c = True
+        while c:
+            inp = raw_input('Expected ' + str(constants.NUM_ROBOTS) + ', found ' + str(len(addresses)) + ' robots. Try hitting reset on the robots. Type "y" to continue or "n" to quit.')
+            if inp.lower().startswith('y'):
+                addresses = blescan.blescan()
+                break
+            elif inp.lower().startswith('n'):
+                sys.exit('User cancelled program when told not enough robots found.')
+                break
+            else:
+                print 'Did not understand command. Try again.'
+    if len(addresses) > constants.NUM_ROBOTS:
+        culled_adr = []
+        c = True
+        while c:
+            addresses = list(addresses)
+            print addresses
+            inp = raw_input('Expected ' + str(constants.NUM_ROBOTS) + ', found ' + str(len(addresses)) + ' robots. \
+                    Enter numbers of the robots you want, separated by commas. e.g. "0,4"')
+            indices = inp.split(',')
+            if inp.lower().startswith('n'):
+                sys.exit('User cancelled program when told too many robots found.')
+                break
+            for i in indices:
+                culled_adr = addresses[int(i)]
+            break
+            #else:
+                #print 'Did not understand command. Try again.'
+        print 'culled', culled_adr
+        addresses = set()
+        addresses.add(culled_adr)
+    for address in addresses:
+        b = bleBot(address)
     # first connect them all because that takes the longest
-    connection = b.connect()
-    connections.append(connection)
+        connection = b.connect()
+        connections.append(connection)
 
     queues = []
 
     threads = []
-    for i in range(len(connections)):
+    for i in range(len(addresses)):
         q = Queue.Queue()
         queues.append(q)
 
