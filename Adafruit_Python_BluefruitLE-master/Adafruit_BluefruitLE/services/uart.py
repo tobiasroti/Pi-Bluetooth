@@ -44,8 +44,9 @@ class UART(ServiceBase):
     def __init__(self, device):
         """Initialize UART from provided bluez device."""
         # Find the UART service and characteristics associated with the device.
-        print('test')
+
         self._uart = device.find_service(UART_SERVICE_UUID)
+        print(self._uart)
         if self._uart is None:
             raise RuntimeError('Failed to find expected UART service!')
         self._tx = self._uart.find_characteristic(TX_CHAR_UUID)
