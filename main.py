@@ -22,15 +22,15 @@ def main():
     # Get the first available BLE network adapter and make sure it's powered on.
     adapter = ble.get_default_adapter()
     adapter.power_on()
-    print('Using adapter: {0}'.format(adapter.name))
+    #print('Using adapter: {0}'.format(adapter.name))
 
     # Disconnect any currently connected UART devices.  Good for cleaning up and
     # starting from a fresh state.
-    print('Disconnecting any connected UART devices...')
+    #print('Disconnecting any connected UART devices...')
     UART.disconnect_devices()
 
     # Scan for UART devices.
-    print('Searching for UART device...')
+    #print('Searching for UART device...')
     try:
         adapter.start_scan()
         # Search for the first UART device found (will time out after 60 seconds
@@ -42,7 +42,7 @@ def main():
         # Make sure scanning is stopped before exiting.
         adapter.stop_scan()
 
-    print('Connecting to device...')
+    #print('Connecting to device...')
     device.connect()  # Will time out after 60 seconds, specify timeout_sec parameter
                       # to change the timeout.
 
@@ -51,7 +51,7 @@ def main():
     try:
         # Wait for service discovery to complete for the UART service.  Will
         # time out after 60 seconds (specify timeout_sec parameter to override).
-        print('Discovering services...')
+        #print('Discovering services...')
         UART.discover(device)
 
         # Once service discovery is complete create an instance of the service
@@ -61,6 +61,7 @@ def main():
         # Write a string to the TX characteristic.
         #uart.write(b'Hello world!\r\n')
         #print("Sent 'Hello world!' to the device.")
+        print('Ready')
 
         while True:
 
