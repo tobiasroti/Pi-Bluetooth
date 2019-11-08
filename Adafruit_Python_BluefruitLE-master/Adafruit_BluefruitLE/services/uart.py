@@ -46,11 +46,14 @@ class UART(ServiceBase):
         # Find the UART service and characteristics associated with the device.
 
         self._uart = device.find_service(UART_SERVICE_UUID)
-        print(self._uart)
+
         if self._uart is None:
             raise RuntimeError('Failed to find expected UART service!')
         self._tx = self._uart.find_characteristic(TX_CHAR_UUID)
         self._rx = self._uart.find_characteristic(RX_CHAR_UUID)
+
+        print(self._tx)
+        print('test')
         if self._tx is None or self._rx is None:
             raise RuntimeError('Failed to find expected UART RX and TX characteristics!')
         # Use a queue to pass data received from the RX property change back to
