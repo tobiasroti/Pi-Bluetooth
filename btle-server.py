@@ -274,6 +274,7 @@ def main():
             print('received data', data)
         except Exception as e:
             print(e)
+            continue
 
         read_sockets,write_sockets,error_sockets = select.select(sockets,[],[])
         for sock in read_sockets:
