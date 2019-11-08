@@ -255,6 +255,7 @@ class Sphero(threading.Thread):
         self._async_callback_dict = dict()
         self._sync_callback_dict = dict()
         self._sync_callback_queue = []
+        print('Constructor done')
 
     def connect(self):
         self.bt = BTInterface(self.deviceAddress)
@@ -889,5 +890,6 @@ class Sphero(threading.Thread):
 
 test = BTInterface("DD:DB:26:00:0C:86")
 test2 = Sphero(test.deviceAddress)
+print(test.deviceAdress)
 
-print(test2.get_bt_name(True))
+print(test2.connect())
