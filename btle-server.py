@@ -262,7 +262,8 @@ def main():
     sockets = []
     sockets.append(server_socket)
     print 'Server ready to accept commands to pass over BTLE to peripherals'
-
+    print('Socket list:')
+    print(sockets)
     while 1:
 
         read_sockets,write_sockets,error_sockets = select.select(sockets,[],[])
