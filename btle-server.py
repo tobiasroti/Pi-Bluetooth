@@ -266,10 +266,14 @@ def main():
     print(sockets)
     while 1:
 
-        print('TEST')
-        print(server_socket)
-        data = server_socket.recv(2048)
-        print('received data', data)
+        try:
+
+            print('TEST')
+            print(server_socket)
+            data = server_socket.recv(2048)
+            print('received data', data)
+        except Exception as e:
+            print(e)
 
         read_sockets,write_sockets,error_sockets = select.select(sockets,[],[])
         for sock in read_sockets:
