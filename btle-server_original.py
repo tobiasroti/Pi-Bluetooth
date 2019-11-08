@@ -17,7 +17,7 @@ if not btlib:
     raise Exception(
         "Can't find required bluetooth libraries"
     )
-
+    
 class bleBot:
 
     def __init__( self, ble_adr ):
@@ -87,7 +87,7 @@ class bleBot:
             print 'Is USB dongle plugged in?'
             self.cleanup()
         return self
-
+         
     def char_write_cmd( self, value ):
         cmd = 'char-write-cmd 0x%s %s' % (self.handle, value)
         #print self.ble_adr, cmd
@@ -137,7 +137,7 @@ def worker( cmdQueue, connection):
         if cmd is None:
             print connection.ble_adr, ': attempting to cleanup'
             connection.cleanup()
-            return
+            return 
         else:
             connection.char_write_cmd(tupToHex(cmd))
 
@@ -193,16 +193,51 @@ def sendRobotCmds(cmd, queues):
 def main():
     print 'Server running, ready to scan for BTLE peripherals.'
 
-    adress = "DD:DB:26:00:0C.86"
-    b = bleBot(address)
+    connections = []
+
+    addresses = blescan.blescan()
+    while len(addresses) < constants.NUM_ROBOTS:
+        c = True
+        while c:
+            inp = raw_input('Expected ' + str(constants.NUM_ROBOTS) + ', found ' + str(len(addresses)) + ' robots. Try hitting reset on the robots. Type "y" to continue or "n" to quit.')
+            if inp.lower().startswith('y'):
+                addresses = blescan.blescan()
+                break
+            elif inp.lower().startswith('n'):
+                sys.exit('User cancelled program when told not enough robots found.')
+                break
+            else:
+                print 'Did not understand command. Try again.'
+    if len(addresses) > constants.NUM_ROBOTS:
+        culled_adr = []
+        c = True
+        while c:
+            addresses = list(addresses)
+            print addresses
+            inp = raw_input('Expected ' + str(constants.NUM_ROBOTS) + ', found ' + str(len(addresses)) + ' robots. \
+                    Enter numbers of the robots you want, separated by commas. e.g. "0,4"')
+            indices = inp.split(',')
+            if inp.lower().startswith('n'):
+                sys.exit('User cancelled program when told too many robots found.')
+                break
+            for i in indices:
+                culled_adr = addresses[int(i)] 
+            break
+            #else:
+                #print 'Did not understand command. Try again.'
+        print 'culled', culled_adr
+        addresses = set()
+        addresses.add(culled_adr)
+    for address in addresses:
+        b = bleBot(address)
     # first connect them all because that takes the longest
-    connection = b.connect()
-    connections.append(connection)
+        connection = b.connect()
+        connections.append(connection)
 
     queues = []
 
     threads = []
-    for i in range(len(connections)):
+    for i in range(len(addresses)):
         q = Queue.Queue()
         queues.append(q)
 
@@ -210,9 +245,9 @@ def main():
         connection = connections[i]
         #t = threading.Thread(target=worker, args=(connection, cmdList))
         t = threading.Thread(target=worker, args=(cmdQueue, connection))
-        t.daemon = True
+        t.daemon = True 
         threads.append(t)
-
+    
     for t in threads:
         t.start()
 
@@ -246,7 +281,7 @@ def main():
                             conn.close()
                         sys.exit(0)
                     print 'port: ', PORT, '|| Connected by', addr
-
+            
                 else:
                     try:
                         data = sock.recv(2048)
@@ -254,7 +289,7 @@ def main():
                         strRGB = data
                         ##############
 
-                        cmd = [int(s) for s in filter(None, strRGB.rstrip().split(','))] #for python
+                        cmd = [int(s) for s in filter(None, strRGB.rstrip().split(','))] #for python 
                         sendRobotCmds(cmd, queues)
                     except Exception as e:
                         print 'Exception', e
