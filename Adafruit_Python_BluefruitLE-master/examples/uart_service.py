@@ -53,6 +53,8 @@ def main():
         # time out after 60 seconds (specify timeout_sec parameter to override).
         print('Discovering services...')
         UART.discover(device)
+        print('FUCK')
+        print(device)
 
         # Once service discovery is complete create an instance of the service
         # and start interacting with it.
