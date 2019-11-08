@@ -49,8 +49,11 @@ class UART(ServiceBase):
 
         if self._uart is None:
             raise RuntimeError('Failed to find expected UART service!')
-        self._tx = self._uart.find_characteristic(TX_CHAR_UUID)
-        self._rx = self._uart.find_characteristic(RX_CHAR_UUID)
+        #self._tx = self._uart.find_characteristic(TX_CHAR_UUID)
+        #self._rx = self._uart.find_characteristic(RX_CHAR_UUID)
+
+        self._tx = 0xc001
+        self._rx = 0xcf00
 
         print(self._tx)
         print('test')
