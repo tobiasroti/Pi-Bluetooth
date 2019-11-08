@@ -73,6 +73,7 @@ def main():
             else:
                 # Timeout waiting for data, None is returned.
                 #print('Received no data!')
+                pass
     finally:
         # Make sure device is disconnected on exit.
         device.disconnect()
