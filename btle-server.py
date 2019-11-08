@@ -194,7 +194,7 @@ def main():
     print 'Server running, ready to scan for BTLE peripherals.'
 
     connections = []
-    address = "DD:DB:26:00:0C.86"
+    address = "DD:DB:26:00:0C:86"
     b = bleBot(address)
     # first connect them all because that takes the longest
     connection = b.connect()
