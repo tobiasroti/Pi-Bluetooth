@@ -54,15 +54,12 @@ def main():
         print('Discovering services...')
         UART.discover(device)
 
-
         # Once service discovery is complete create an instance of the service
         # and start interacting with it.
-        #uart = UART(device)
-        print('FUCK2')
-        print(UART(device))
+        uart = UART(device)
 
         # Write a string to the TX characteristic.
-        uart.write('Hello world!\r\n')
+        uart.write(b'Hello world!\r\n')
         print("Sent 'Hello world!' to the device.")
 
         # Now wait up to one minute to receive data from the device.

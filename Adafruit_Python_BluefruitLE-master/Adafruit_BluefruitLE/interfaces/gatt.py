@@ -45,8 +45,6 @@ class GattService(object):
         """Return the first child characteristic found that has the specified
         UUID.  Will return None if no characteristic that matches is found.
         """
-        print('Fuck2')
-        print(self.list_characteristics())
         for char in self.list_characteristics():
             if char.uuid == uuid:
                 return char

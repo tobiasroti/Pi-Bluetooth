@@ -37,17 +37,14 @@ class UART(ServiceBase):
     """Bluetooth LE UART service object."""
 
     # Configure expected services and characteristics for the UART service.
-    #ADVERTISED = [UART_SERVICE_UUID]
-    #SERVICES = [UART_SERVICE_UUID]
-    #CHARACTERISTICS = [TX_CHAR_UUID, RX_CHAR_UUID]
-    print('FUCK')
+    ADVERTISED = [UART_SERVICE_UUID]
+    SERVICES = [UART_SERVICE_UUID]
+    CHARACTERISTICS = [TX_CHAR_UUID, RX_CHAR_UUID]
 
     def __init__(self, device):
         """Initialize UART from provided bluez device."""
-        print('FUCK')
         # Find the UART service and characteristics associated with the device.
-        #self._uart = device.find_service(UART_SERVICE_UUID)
-        print('FUCK')
+        self._uart = device.find_service(UART_SERVICE_UUID)
         if self._uart is None:
             raise RuntimeError('Failed to find expected UART service!')
         self._tx = self._uart.find_characteristic(TX_CHAR_UUID)
