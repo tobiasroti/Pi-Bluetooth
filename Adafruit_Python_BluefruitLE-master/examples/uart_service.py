@@ -59,7 +59,7 @@ def main():
         # and start interacting with it.
         #uart = UART(device)
         print('FUCK2')
-        print(uart)
+        print(UART(device))
 
         # Write a string to the TX characteristic.
         uart.write('Hello world!\r\n')
