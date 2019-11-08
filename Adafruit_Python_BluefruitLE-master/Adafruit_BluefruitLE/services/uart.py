@@ -40,6 +40,7 @@ class UART(ServiceBase):
     ADVERTISED = [UART_SERVICE_UUID]
     SERVICES = [UART_SERVICE_UUID]
     CHARACTERISTICS = [TX_CHAR_UUID, RX_CHAR_UUID]
+    print('FUCK')
 
     def __init__(self, device):
         """Initialize UART from provided bluez device."""
