@@ -55,8 +55,13 @@ class BluezGattService(GattService):
         """Return list of GATT characteristics that have been discovered for this
         service.
         """
-        return map(BluezGattCharacteristic, 
-            get_provider()._get_objects(_CHARACTERISTIC_INTERFACE, 
+        print('FUCK')
+
+        print(map(BluezGattCharacteristic,
+            get_provider()._get_objects(_CHARACTERISTIC_INTERFACE,
+                                        self._service.object_path)))
+        return map(BluezGattCharacteristic,
+            get_provider()._get_objects(_CHARACTERISTIC_INTERFACE,
                                         self._service.object_path))
 
 
