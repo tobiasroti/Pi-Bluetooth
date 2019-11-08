@@ -21,7 +21,7 @@ def step():
         self.sock.send(message)
 
 def main():
-while 1:
+    while 1:
         try:
             s.step()
             time.sleep(0.02)
