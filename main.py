@@ -890,4 +890,4 @@ class Sphero(threading.Thread):
 test = BTInterface("DD:DB:26:00:0C:86")
 test2 = Sphero(test.deviceAddress)
 
-test2.run()
+print(test2.get_bt_name())
