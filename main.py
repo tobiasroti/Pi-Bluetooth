@@ -56,3 +56,4 @@ scanner.start()
 while True:
     print "Still running..."
     scanner.process()
+    print(scanner.ScanEntry.connectable)
