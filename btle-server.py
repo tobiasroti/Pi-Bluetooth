@@ -270,57 +270,7 @@ def main():
                 print('TEST')
                 data = sock.recv(2048)
                 print('received data', data)
-                '''
-                if sock == server_socket:
-                    try:
-                        conn, addr = server_socket.accept()
-                        sockets.append(conn)
-                        print "Client (%s, %s) connect" % addr
-                    except (KeyboardInterrupt, ValueError, socket.error) as inst:
-                        print "Caught exception: ", type(inst), "closing ble connections"
-                        for connection in connections:
-                            connection.cleanup()
-                        for conn in sockets:
-                            conn.shutdown(socket.SHUT_RDWR)
-                            conn.close()
-                        sys.exit(0)
-                    print 'port: ', PORT, '|| Connected by', addr
 
-                else:
-                    try:
-                        data = sock.recv(2048)
-                        print('received data', data)
-
-                        ##############
-
-                        cmd = [int(s) for s in filter(None, strRGB.rstrip().split(','))] #for python
-                        sendRobotCmds(cmd, queues)
-                    except Exception as e:
-                        print 'Exception', e
-                        print "Client (%s, %s) is offline" % addr, 'removing from list of sockets: ', sockets
-                        sock.close()
-                        sockets.remove(sock)
-                        continue
-        except (KeyboardInterrupt) as inst:
-            print type(inst)
-            print 'closing due to error'
-            print 'number of robots connected: ', len(connections)
-            print 'number of sockets connect: ', len(sockets)
-            for q in queues:
-                q.put(constants.KILL_CMD_C)
-                q.put(constants.KILL_CMD_S)
-                q.put(None)
-            for t in threads:
-                t.join() #timeout required so that main thread also receives KeyboardInterrupt
-            print 'threads closed'
-            for conn in sockets:
-                conn.shutdown(socket.SHUT_RDWR)
-                conn.close()
-                print 'serial connection closed: ', conn
-            sys.exit()
-    print 'closing normally'
-    server_socket.close()
-    '''
 
 
 if __name__ == "__main__":
