@@ -158,7 +158,7 @@ class BTInterface(btle.DefaultDelegate):
 
 
     def getSpheroCharacteristic(self):
-        print(self.peripheral.getCharacteristics(startHnd=1, endHnd=0xFFFF, uuid=None))
+        #print(self.peripheral.getCharacteristics(startHnd=1, endHnd=0xFFFF, uuid=None))
         return self.peripheral.getCharacteristics(startHnd=1, endHnd=0xFFFF, uuid=None)
 
     def dumpCharacteristics(self):
