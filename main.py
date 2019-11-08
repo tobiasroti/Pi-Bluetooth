@@ -888,4 +888,8 @@ class Sphero(threading.Thread):
         return self.is_connected
 
 test = BTInterface("DD:DB:26:00:0C:86")
-test.waitForNotifications(10)
+test.waitForNotifications(5)
+print('Next step:')
+while True:
+    Sphero(test.deviceAddress).recv(data)
+    time.sleep(1)
