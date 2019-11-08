@@ -767,10 +767,10 @@ class Sphero(threading.Thread):
         self.bt.peripheral.disconnect()
         return self.is_connected
 
-#test = BTInterface("DD:DB:26:00:0C:86")
-test2 = Sphero("DD:DB:26:00:0C:86")
-test2.connect()
+test = BTInterface("DD:DB:26:00:0C:86")
+#test2 = Sphero("DD:DB:26:00:0C:86")
+#test2.connect()
 
-print(test2.get_bt_name(True))
+#print(test2.get_bt_name(True))
 #test2.ping(5)
 #test2.send('fuck', False)
