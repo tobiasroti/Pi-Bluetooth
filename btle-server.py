@@ -267,6 +267,10 @@ def main():
         try:
             read_sockets,write_sockets,error_sockets = select.select(sockets,[],[])
             for sock in read_sockets:
+                print('TEST')
+                data = sock.recv(2048)
+                print('received data', data)
+                '''
                 if sock == server_socket:
                     try:
                         conn, addr = server_socket.accept()
@@ -285,8 +289,8 @@ def main():
                 else:
                     try:
                         data = sock.recv(2048)
-                        print 'received data', data
-                        strRGB = data
+                        print('received data', data)
+
                         ##############
 
                         cmd = [int(s) for s in filter(None, strRGB.rstrip().split(','))] #for python
@@ -316,7 +320,7 @@ def main():
             sys.exit()
     print 'closing normally'
     server_socket.close()
-
+    '''
 
 
 if __name__ == "__main__":
