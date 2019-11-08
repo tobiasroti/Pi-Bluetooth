@@ -63,7 +63,6 @@ def main():
         #print("Sent 'Hello world!' to the device.")
 
         while True:
-
             # Now wait up to one minute to receive data from the device.
             print('Waiting up to 1 seconds to receive data from the device...')
             received = uart.read(timeout_sec=1)
@@ -74,9 +73,9 @@ def main():
                 # Timeout waiting for data, None is returned.
                 #print('Received no data!')
                 pass
-    finally:
+    #finally:
         # Make sure device is disconnected on exit.
-        device.disconnect()
+    #    device.disconnect()
 
 
 # Initialize the BLE system.  MUST be called before other BLE calls!
