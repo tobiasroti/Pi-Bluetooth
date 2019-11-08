@@ -1,15 +1,8 @@
-# Example of displaying the device information service (DIS) info for a UART device.
-#
-# !!! NOTE !!!
-#
-# Only works on Mac OSX at this time.  On Linux bluez appears to hide the DIS
-# service entirely. :(
-#
-# !!! NOTE !!!
-#
+# Example of interaction with a BLE UART device using a UART service
+# implementation.
 # Author: Tony DiCola
 import Adafruit_BluefruitLE
-from Adafruit_BluefruitLE.services import UART, DeviceInformation
+from Adafruit_BluefruitLE.services import UART
 
 
 # Get the BLE provider for the current platform.
@@ -56,25 +49,30 @@ def main():
     # Once connected do everything else in a try/finally to make sure the device
     # is disconnected when done.
     try:
-        # Wait for service discovery to complete for the DIS service.  Will
+        # Wait for service discovery to complete for the UART service.  Will
         # time out after 60 seconds (specify timeout_sec parameter to override).
         print('Discovering services...')
-        DeviceInformation.discover(device)
+        UART.discover(device)
 
         # Once service discovery is complete create an instance of the service
         # and start interacting with it.
-        dis = DeviceInformation(device)
+        uart = UART(device)
 
-        # Print out the DIS characteristics.
-        print('Manufacturer: {0}'.format(dis.manufacturer))
-        print('Model: {0}'.format(dis.model))
-        print('Serial: {0}'.format(dis.serial))
-        print('Hardware Revision: {0}'.format(dis.hw_revision))
-        print('Software Revision: {0}'.format(dis.sw_revision))
-        print('Firmware Revision: {0}'.format(dis.fw_revision))
-        print('System ID: {0}'.format(dis.system_id))
-        print('Regulatory Cert: {0}'.format(dis.regulatory_cert))
-        print('PnP ID: {0}'.format(dis.pnp_id))
+        # Write a string to the TX characteristic.
+        #uart.write(b'Hello world!\r\n')
+        #print("Sent 'Hello world!' to the device.")
+
+        while True:
+
+            # Now wait up to one minute to receive data from the device.
+            print('Waiting up to 1 seconds to receive data from the device...')
+            received = uart.read(timeout_sec=1)
+            if received is not None:
+                # Received data, print it out.
+                print('Received: {0}'.format(received))
+            else:
+                # Timeout waiting for data, None is returned.
+                #print('Received no data!')
     finally:
         # Make sure device is disconnected on exit.
         device.disconnect()
