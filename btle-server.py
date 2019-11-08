@@ -272,6 +272,16 @@ def main():
                 data = sock.recv(2048)
                 print('received data', data)
 
+
+    while 1:
+        try:
+            read_sockets,write_sockets,error_sockets = select.select(sockets,[],[])
+            for sock in read_sockets:
+                print('TEST')
+                print(sock)
+                data = sock.recv(2048)
+                print('received data', data)
+
                 if sock == server_socket:
                     try:
                         conn, addr = server_socket.accept()
