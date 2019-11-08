@@ -64,8 +64,7 @@ def main():
 
         while True:
 
-            # Now wait up to one minute to receive data from the device.
-            print('Waiting up to 1 seconds to receive data from the device...')
+            # Now wait up to one sec to receive data from the device.
             received = uart.read(timeout_sec=1)
             if received is not None:
                 # Received data, print it out.
