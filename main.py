@@ -76,7 +76,7 @@ def main():
                 pass
     finally:
         # Make sure device is disconnected on exit.
-    device.disconnect()
+        device.disconnect()
 
 
 # Initialize the BLE system.  MUST be called before other BLE calls!
