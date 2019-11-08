@@ -285,7 +285,7 @@ def main():
                 else:
                     try:
                         data = sock.recv(2048)
-                        #print 'received data', data
+                        print 'received data', data
                         strRGB = data
                         ##############
 
