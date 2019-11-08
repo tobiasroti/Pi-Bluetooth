@@ -152,10 +152,9 @@ class BTInterface(btle.DefaultDelegate):
             }
         test = uuid.UUID(o['uuid']).hex
 
-        self.characteristic = btle.Characteristic(self.getSpheroCharacteristic(),test)
+        #self.characteristic = btle.Characteristic(self.getSpheroCharacteristic(),test)
 
-        for item in self.antidos:
-            print(item)
+
 
 
     def getSpheroCharacteristic(self):
