@@ -264,13 +264,13 @@ def main():
     print 'Server ready to accept commands to pass over BTLE to peripherals'
 
     while 1:
-        try:
-            read_sockets,write_sockets,error_sockets = select.select(sockets,[],[])
-            for sock in read_sockets:
-                print('TEST')
-                print(sock)
-                data = sock.recv(2048)
-                print('received data', data)
+
+        read_sockets,write_sockets,error_sockets = select.select(sockets,[],[])
+        for sock in read_sockets:
+            print('TEST')
+            print(sock)
+            data = sock.recv(2048)
+            print('received data', data)
 
 
     while 1:
