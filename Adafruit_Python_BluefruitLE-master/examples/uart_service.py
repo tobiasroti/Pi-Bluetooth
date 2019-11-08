@@ -58,7 +58,7 @@ def main():
         # Once service discovery is complete create an instance of the service
         # and start interacting with it.
         uart = UART(device)
-        print('FUCK')
+        print('FUCK2')
         print(uart)
 
         # Write a string to the TX characteristic.
